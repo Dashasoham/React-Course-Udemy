@@ -1,0 +1,26 @@
+{
+  "name": "react-course-udemy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "react-scripts start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dashasoham/React-Course-Udemy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dashasoham/React-Course-Udemy/issues"
+  },
+  "homepage": "https://github.com/Dashasoham/React-Course-Udemy#readme",
+  "dependencies": {
+    "react-scripts": "^5.0.1"
+  }
+}

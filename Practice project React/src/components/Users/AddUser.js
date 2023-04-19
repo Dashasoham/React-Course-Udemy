@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import UserList from "./UserList";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import "./AddUser.css";
@@ -8,7 +9,7 @@ const AddUser = (props) => {
   const [enteredAge, setEnteredAge] = useState("");
 
   const nameChangeHandler = (event) => {
-    console.log(event);
+    setEnteredName(event.target.value);
   };
 
   const ageChangeHandler = (event) => {
@@ -25,29 +26,33 @@ const AddUser = (props) => {
   };
 
   return (
-    <Card className="input">
-      <form onSubmit={submitFormHandler}>
-        <label>Username</label>
-        <input
-          id="age"
-          type="number"
-          value={enteredName}
-          onChange={nameChangeHandler}
-        />
-        <label>Age (Years)</label>
-        <input
-          id="age"
-          type="number"
-          value={enteredAge}
-          onChange={ageChangeHandler}
-        />
-        {/* <button className="button-54" role="button">
+    <div>
+      <Card className="input">
+        <form onSubmit={submitFormHandler}>
+          <label>Username</label>
+          <input
+            id="name"
+            type="text"
+            value={enteredName}
+            onChange={nameChangeHandler}
+          />
+          <label>Age (Years)</label>
+          <input
+            id="age"
+            type="number"
+            value={enteredAge}
+            onChange={ageChangeHandler}
+          />
+          {/* <button className="button-54" role="button">
           Test
         </button> */}
-        <Button type="submit">Add User</Button>
-      </form>
-      {/* <Button className="button-54">Add User</Button> */}
-    </Card>
+          <Button type="submit">Add User</Button>
+        </form>
+
+        {/* <Button className="button-54">Add User</Button> */}
+      </Card>
+      <UserList />
+    </div>
   );
 };
 export default AddUser;

@@ -4,10 +4,11 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 import "./AddUser.css";
 
-const AddUser = (props) => {
+const AddUser = () => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [users, setUsers] = useState([]);
 
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -23,9 +24,13 @@ const AddUser = (props) => {
     const userData = {
       name: enteredName,
       age: enteredAge,
+      id: Math.random().toString(),
     };
 
     // props.onSaveUserData(userData);
+
+    setUsers((prevUsers) => [...prevUsers, userData]);
+
     setFormSubmitted(true);
   };
 
@@ -53,16 +58,12 @@ const AddUser = (props) => {
   if (formSubmitted) {
     content = (
       <div>
-        {formContent}
-        <UserList />
+        <Card className="input">{content}</Card>
+        <UserList users={users} />
       </div>
     );
   }
 
-  return (
-    <div>
-      <Card className="input">{content}</Card>
-    </div>
-  );
+  return <div>{content}</div>;
 };
 export default AddUser;

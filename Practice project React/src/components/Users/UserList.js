@@ -10,12 +10,6 @@ const UserList = (props) => {
           <li className="users">
             <label>Username</label>
             <label>Username</label>
-            <label>Username</label>
-          </li>
-          <li className="users">
-            <label>Username</label>
-            <label>Username</label>
-            <label>Username</label>
           </li>
         </ul>
       </div>

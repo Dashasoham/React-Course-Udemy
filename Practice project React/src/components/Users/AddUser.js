@@ -7,6 +7,7 @@ import "./AddUser.css";
 const AddUser = (props) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
@@ -19,39 +20,48 @@ const AddUser = (props) => {
     event.preventDefault();
     console.log(enteredName, enteredAge);
 
-    // const enteredData = {
-    //   name: enteredName,
-    //   age: enteredAge,
-    // };
+    const userData = {
+      name: enteredName,
+      age: enteredAge,
+    };
+
+    // props.onSaveUserData(userData);
+    setFormSubmitted(true);
   };
+
+  let formContent = (
+    <form onSubmit={submitFormHandler}>
+      <label>Username</label>
+      <input
+        id="name"
+        type="text"
+        value={enteredName}
+        onChange={nameChangeHandler}
+      />
+      <label>Age (Years)</label>
+      <input
+        id="age"
+        type="number"
+        value={enteredAge}
+        onChange={ageChangeHandler}
+      />
+
+      <Button type="submit">Add User</Button>
+    </form>
+  );
+  let content = formContent;
+  if (formSubmitted) {
+    content = (
+      <div>
+        {formContent}
+        <UserList />
+      </div>
+    );
+  }
 
   return (
     <div>
-      <Card className="input">
-        <form onSubmit={submitFormHandler}>
-          <label>Username</label>
-          <input
-            id="name"
-            type="text"
-            value={enteredName}
-            onChange={nameChangeHandler}
-          />
-          <label>Age (Years)</label>
-          <input
-            id="age"
-            type="number"
-            value={enteredAge}
-            onChange={ageChangeHandler}
-          />
-          {/* <button className="button-54" role="button">
-          Test
-        </button> */}
-          <Button type="submit">Add User</Button>
-        </form>
-
-        {/* <Button className="button-54">Add User</Button> */}
-      </Card>
-      <UserList />
+      <Card className="input">{content}</Card>
     </div>
   );
 };

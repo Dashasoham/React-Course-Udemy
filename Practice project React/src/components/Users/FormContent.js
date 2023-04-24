@@ -10,6 +10,7 @@ const FormContent = (props) => {
           type="text"
           value={props.enteredName}
           onChange={props.nameChangeHandler}
+          ref={props.nameInputRef}
         />
         <label>Age (Years)</label>
         <input
@@ -17,8 +18,9 @@ const FormContent = (props) => {
           type="number"
           value={props.enteredAge}
           onChange={props.ageChangeHandler}
+          ref={props.ageInputRef}
         />
-        <button className="button-54">Add User</button>
+        <button className="button-54">Add User</button>{" "}
       </form>
     </Card>
   );

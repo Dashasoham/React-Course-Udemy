@@ -26,9 +26,8 @@ const AddUser = () => {
     const enteredUserName = nameInputRef.current.value;
     const enteredUserAge = ageInputRef.current.value;
 
-    if (!enteredUserName.trim().length || !enteredUserAge.trim().length) {
-      return setShowModal(true);
-    }
+    if (!enteredUserName.trim().length || !enteredUserAge.trim().length)
+      return toggleShowModal();
 
     const userData = {
       name: enteredUserName,
@@ -44,8 +43,9 @@ const AddUser = () => {
     // setEnteredAge("");
   };
 
-  const closeShowModal = () => {
-    setShowModal(false);
+  const toggleShowModal = () => {
+    // console.log('button clicked');
+    setShowModal((prev) => !prev);
   };
 
   let content = (
@@ -71,13 +71,13 @@ const AddUser = () => {
 
   return (
     <div>
-      {showModal && (
-        <ModalWindow
-          title="Invalid Input"
-          message="Please enter a valid name and age (non-empty values)."
-          onClose={closeShowModal}
-        />
-      )}
+      <ModalWindow
+        title="Invalid Input"
+        message="Please enter a valid name and age (non-empty values)."
+        showModal={showModal}
+        onClose={toggleShowModal}
+      />
+
       {content}
     </div>
   );

@@ -3,22 +3,25 @@ import "./ModalWindow.css";
 import Card from "../UI/Card";
 
 const ModalWindow = (props) => {
+  const { showModal, title, message, onClose } = props;
+
+  if (!showModal) return null;
+
   return (
     <div>
       <div className="backdrop" />
       <Card className="modal">
         <header className="header">
-          <h2>{props.title}</h2>
+          <h2>{title}</h2>
         </header>
         <div className="content">
-          <p>{props.message}</p>
+          <p>{message}</p>
         </div>
         <footer className="actions">
           {" "}
-          <button className="button-54" onClick={props.onClose}>
+          <button className="button-54" onClick={onClose}>
             Okay
           </button>
-          {/* <Button onClick={props.onClose}>Okay</Button> */}
         </footer>
       </Card>
     </div>

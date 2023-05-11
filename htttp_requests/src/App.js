@@ -8,10 +8,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchMoviesHandler();
-  }, []);
-
   const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);

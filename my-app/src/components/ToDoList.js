@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
 function ToDoList() {
   const [toDo, setToDo] = useState([]);
@@ -14,14 +14,25 @@ function ToDoList() {
     setToDo((prevToDo) => prevToDo.filter((_, i) => i !== index));
   }, []);
 
+  useEffect(() => {
+    const storedToDoItems = localStorage.getItem('toDoItems');
+    if (storedToDoItems) {
+      setToDo(JSON.parse(storedToDoItems));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('toDoItems', JSON.stringify(toDo));
+  }, [toDo]);
+
   return (
     <form onSubmit={handleTaskSubmit}>
       <input type='text' placeholder='Add a new task' ref={inputRef} />
       <button type='submit'>Add</button>
       <ul>
         {toDo.map((task, index) => (
-          <div>
-            <li key={index}>{task}</li>
+          <div key={index}>
+            <li>{task}</li>
             <button type='button' onClick={() => handleDeleteButton(index)}>
               Delete Task
             </button>

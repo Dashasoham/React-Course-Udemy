@@ -22,5 +22,8 @@
   "homepage": "https://github.com/Dashasoham/React-Course-Udemy#readme",
   "dependencies": {
     "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
   }
 }

@@ -1,25 +1,14 @@
-function addNumbers(n1:number,n2:number){
-    return n1+n2
-} 
+let userInput:unknown
+let userName:string
 
-
-function printResult(num:number){
-    console.log('Result: ' + num)
-
+userInput = 5
+userInput = 'Max'
+if (typeof userInput === 'string') {
+userName=userInput
 }
 
-printResult(addNumbers(5,12))
-
-let combineValues:(a:number,b:number)=>number;
-combineValues = addNumbers;
-console.log(combineValues(8,8))
-
-
-function addAndHandle(a:number, b:number, callback:(num:number)=>void){
-    const result=a+b;
-    callback(result)
+function generateError(message:string, code:number){
+    throw {message:message, errorCode:code}
 }
 
-addAndHandle(10,20,(result)=>{console.log(result)});
-
-
+generateError('An error occurred!', 500)

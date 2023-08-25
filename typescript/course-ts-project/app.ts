@@ -11,4 +11,4 @@ function generateError(message:string, code:number){
     throw {message:message, errorCode:code}
 }
 
-generateError('An error occurred!', 500)
+generateError('An error occurred 123!', 500)

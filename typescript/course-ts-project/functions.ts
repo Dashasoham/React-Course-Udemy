@@ -3,12 +3,12 @@ function addNumbers(n1:number,n2:number){
 } 
 
 
-function printResult(num:number){
+function printResults(num:number){
     console.log('Result: ' + num)
 
 }
 
-printResult(addNumbers(5,12))
+printResults(addNumbers(5,12))
 
 let combineValues:(a:number,b:number)=>number;
 combineValues = addNumbers;

@@ -64,3 +64,22 @@ function moveAnimal(animal:Animal){
     if ('flyingSpeed' in animal){
     console.log('Moving with speed: '+animal.flyingSpeed);}
 }
+
+
+const userInputElement=document.getElementById('user-input')! as HTMLInputElement;
+
+userInputElement.value='Hi there!';
+
+
+
+interface ErrorContainer{//{email:string,username:string}
+    [prop:string]:string;
+}
+
+const errorBag:ErrorContainer={
+    email:'Not a valid email!',
+}
+
+
+
+

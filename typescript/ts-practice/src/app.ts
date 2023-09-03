@@ -1,60 +1,66 @@
-// const userName = 'Max';
-// userName = 'Maximilian';
-// let age = 30;
+type Admin={
+    name:string;
+    privileges:string[];
 
-// age = 29;
-
-// function add(a: number, b: number) {
-//   let result;
-//   result = a + b;
-//   return result;
-// }
-
-// if (age > 20) {
-//   let isOld = true;
-// }
-
-// console.log(isOld);
-
-// console.log(result);
-
-// const add = (a: number, b: number = 1) => a + b;
-
-// const printOutput: (a: number | string) => void = output => console.log(output);
-
-// const button = document.querySelector('button');
-
-// if (button) {
-//   button.addEventListener('click', event => console.log(event));
-// }
-
-// printOutput(add(5));
-
-const hobbies = ['Sports', 'Cooking'];
-const activeHobbies = ['Hiking'];
-
-activeHobbies.push(...hobbies);
-
-const person = {
-  firstName: 'Max',
-  age: 30
-};
-
-const copiedPerson = { ...person };
-
-const add =(...numbers:number[])=>{
-return numbers.reduce((curResult,curValue)=>{
-  return curResult+curValue;
-},0)
 }
 
-const addedNumbers=add(5,10,20)
-console.log(addedNumbers);
-console.log(23);
+type Employee={
+    name:string;
+    startDate:Date;
 
-const [hobby1,hobby2, ...remainingHobbies]= hobbies
-console.log(hobby1);
+}
 
-const {firstName:userName,age}=person;
+type ElevatedEmployee=Admin & Employee;
 
-console.log(userName,age);
+const e1:ElevatedEmployee={name:'Max',privileges:['create-server'],startDate:new Date}
+
+type Combinable = string | number;
+type Numeric = number | boolean;
+type Universal = Combinable & Numeric;
+console.log(2);
+
+
+
+function add(a:Combinable,b:Combinable){
+    if(typeof a==='string'||typeof b==='string'){
+        return a.toString()+b.toString();
+    }
+    return a+b;
+}
+
+type UnknownEmployee=Employee|Admin;
+
+
+
+function printEmployeeInformation(emp:UnknownEmployee){
+    console.log('Name: '+emp.name);
+    if('privileges' in emp){
+        console.log('Privileges: '+emp.privileges);
+    
+    }
+    if('startDate' in emp){
+        console.log('Date: '+emp.startDate);
+    }
+}
+printEmployeeInformation(e1);
+
+
+interface Bird{
+    type:'bird';
+    flyingSpeed:number;
+
+}
+
+interface Horse{
+    type:'horse';
+    runningSpeed:number;
+
+
+}
+
+type Animal=Bird|Horse;
+
+function moveAnimal(animal:Animal){
+    if ('flyingSpeed' in animal){
+    console.log('Moving with speed: '+animal.flyingSpeed);}
+}

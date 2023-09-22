@@ -1,3 +1,27 @@
+//Project State Management class
+
+function State(){
+    const projects:any[]=[];
+   
+    const addProject=(title:string,description:string,numOfPeople:number)=>{
+const newProject={
+    id:Math.random().toString(),
+    title:title,
+    description:description,
+    people:numOfPeople,
+}
+projects.push(newProject)
+console.log(projects)
+    
+        }
+        return{
+            projects:projects,
+            addProject:addProject,
+        }
+}
+
+const projectState=State()
+
 interface Validatable{
     value:string|number;
     required?:boolean;
@@ -28,6 +52,30 @@ function validate(validatableInput:Validatable){
     isValid=isValid&&validatableInput.value<=validatableInput.max
    }    return isValid
     }
+
+    //ProjectList
+
+
+    
+function ProjectList(type:'active'|'finished'){
+    
+
+const templateElement = document.getElementById('project-list')! as HTMLTemplateElement;
+const hostElement = document.getElementById('app')! as HTMLDivElement;
+const importedNode = document.importNode(templateElement.content, true);
+const element = importedNode.firstElementChild as HTMLElement;
+element.id = `${type}-projects`;
+
+const renderContent=()=>{
+    const listID=`${type}-projects-list`
+    element.querySelector('ul')!.id=listID;
+    element.querySelector('h2')!.textContent=type.toUpperCase()+' PROJECTS';}
+
+renderContent();
+
+hostElement.insertAdjacentElement('beforeend', element);
+    }
+
 
 function ProjectInput1(){
 const templateElement = document.getElementById('project-input')! as HTMLTemplateElement;
@@ -91,10 +139,12 @@ const submitHandler = (event: Event) => {
 
     event.preventDefault();
     const userInput=gatherUserInput();
+    console.log(1,userInput);
     if(Array.isArray(userInput)){
         const [title,description,people]=userInput;
         console.log(title,description,people);
-    clearInputs()
+    projectState.addProject(title,description,people);
+        clearInputs()
     }
 
 
@@ -103,5 +153,9 @@ element.addEventListener('submit',submitHandler)
 }
 
 ProjectInput1()
+ProjectList('active');
+ProjectList('finished');
+
+
 
 

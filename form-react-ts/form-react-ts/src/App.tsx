@@ -13,7 +13,9 @@ function App() {
   setUsers(prevUsers=>[...prevUsers,{name:enteredName,email:enteredEmail}])
  }
 
- 
+ const handleDeleteClick=(index:number)=>{
+  setUsers(prevUsers=>prevUsers.filter((user,currentIndex)=>currentIndex!==index))
+ }
   
   return (
     <div className="App">
@@ -22,7 +24,7 @@ function App() {
       {/* // submitForm={onFormSubmit}  */}
       
       
-      <ListComponent users={users} />
+      <ListComponent users={users} deleteItem={handleDeleteClick}/>
       </header>
     </div>
   );

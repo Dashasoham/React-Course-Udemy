@@ -1,4 +1,4 @@
-import React,{useRef} from 'react';
+import React,{useRef, useState} from 'react';
 
 
 
@@ -7,6 +7,8 @@ interface FormComponentProps {
 } 
 
 const FormComponent:React.FC<FormComponentProps>=(props)=>{
+
+    const [correctUserData,setCorrectUserData]=useState(false)
     const nameRef=useRef<HTMLInputElement>(null);
     const emailRef=useRef<HTMLInputElement>(null);
     const passRef=useRef<HTMLInputElement>(null);
@@ -16,6 +18,12 @@ const FormComponent:React.FC<FormComponentProps>=(props)=>{
         let enteredName=nameRef.current!.value
         let enteredEmail=emailRef.current!.value
         let enteredPass=passRef.current!.value
+
+        if (enteredName.length<=0||enteredPass) {
+            alert('Please enter a name')
+        }
+
+
     
     if (enteredName&&enteredEmail&&enteredPass)  {
     props.onAddUsers(enteredName,enteredEmail);
